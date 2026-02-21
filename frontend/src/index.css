@@ -1,0 +1,380 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ── */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+/* ── KPI Card with colored left accent ── */
+.kpi-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 4px 0 0 4px;
+}
+
+.kpi-card.accent-teal::before {
+  background: #10b981;
+}
+
+.kpi-card.accent-blue::before {
+  background: #3b82f6;
+}
+
+.kpi-card.accent-amber::before {
+  background: #f59e0b;
+}
+
+.kpi-card.accent-purple::before {
+  background: #8b5cf6;
+}
+
+.kpi-card.accent-red::before {
+  background: #ef4444;
+}
+
+.kpi-card.accent-cyan::before {
+  background: #06b6d4;
+}
+
+/* ── Status dot ── */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.status-dot.active,
+.status-dot.available {
+  background: #10b981;
+}
+
+.status-dot.on_trip,
+.status-dot.in_transit {
+  background: #3b82f6;
+}
+
+.status-dot.maintenance,
+.status-dot.in_shop {
+  background: #f59e0b;
+}
+
+.status-dot.critical,
+.status-dot.suspended {
+  background: #ef4444;
+}
+
+.status-dot.idle,
+.status-dot.off_duty {
+  background: #8b5cf6;
+}
+
+.status-dot.scheduled {
+  background: #06b6d4;
+}
+
+/* ── Glassmorphism ── */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .glass {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(59, 130, 246, 0.12);
+}
+
+/* ── Dark card surface ── */
+.dark-card {
+  background: #1e293b;
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  border-radius: 0.75rem;
+}
+
+/* ── Donut chart ── */
+.donut-ring {
+  fill: none;
+  stroke-width: 12;
+}
+
+.donut-segment {
+  fill: none;
+  stroke-width: 12;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s ease;
+}
+
+/* ── Progress bar ── */
+.progress-bar {
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-bar .fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+/* ── Area chart gradient ── */
+.chart-area {
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-line {
+  stroke: #3b82f6;
+  stroke-width: 2;
+  fill: none;
+}
+
+.chart-fill {
+  fill: url(#chartGradient);
+  opacity: 0.3;
+}
+
+/* ── Trend indicators ── */
+.trend-up {
+  color: #10b981;
+}
+
+.trend-down {
+  color: #ef4444;
+}
+
+.trend-stable {
+  color: #64748b;
+}
+
+/* ── Animated gradient bg for login hero ── */
+.login-hero-bg {
+  background: linear-gradient(135deg, #0B1120 0%, #1e293b 50%, #0f172a 100%);
+}
+
+/* ── Calendar grid ── */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+}
+
+/* ─────────────────────────────────────────────
+   Light-mode overrides
+   Remap hardcoded navy-* to white/gray in light mode.
+   Dark mode is the default; the .dark class is added
+   to <html> by ThemeContext. When .dark is absent the
+   overrides below kick in automatically.
+   ──────────────────────────────────────────── */
+
+/* Backgrounds */
+html:not(.dark) .bg-navy-900 {
+  background-color: #f8fafc !important;
+}
+
+html:not(.dark) .bg-navy-800 {
+  background-color: #ffffff !important;
+}
+
+html:not(.dark) .bg-navy-700 {
+  background-color: #ffffff !important;
+}
+
+html:not(.dark) .bg-navy-700\/50 {
+  background-color: rgba(248, 250, 252, 0.5) !important;
+}
+
+html:not(.dark) .bg-navy-700\/60 {
+  background-color: rgba(241, 245, 249, 0.6) !important;
+}
+
+html:not(.dark) .bg-navy-600 {
+  background-color: #e2e8f0 !important;
+}
+
+html:not(.dark) .bg-navy-600\/50 {
+  background-color: rgba(226, 232, 240, 0.5) !important;
+}
+
+html:not(.dark) .bg-navy-600\/40 {
+  background-color: rgba(226, 232, 240, 0.4) !important;
+}
+
+html:not(.dark) .bg-navy-600\/30 {
+  background-color: rgba(226, 232, 240, 0.3) !important;
+}
+
+html:not(.dark) .bg-navy-600\/20 {
+  background-color: rgba(226, 232, 240, 0.2) !important;
+}
+
+html:not(.dark) .bg-navy-800\/50 {
+  background-color: rgba(248, 250, 252, 0.5) !important;
+}
+
+/* Borders */
+html:not(.dark) .border-navy-600\/50 {
+  border-color: rgba(203, 213, 225, 0.6) !important;
+}
+
+html:not(.dark) .border-navy-600\/40 {
+  border-color: rgba(203, 213, 225, 0.5) !important;
+}
+
+html:not(.dark) .border-navy-600\/30 {
+  border-color: rgba(203, 213, 225, 0.4) !important;
+}
+
+html:not(.dark) .border-navy-600 {
+  border-color: #cbd5e1 !important;
+}
+
+html:not(.dark) .border-navy-500\/50 {
+  border-color: rgba(148, 163, 184, 0.3) !important;
+}
+
+html:not(.dark) .border-navy-500 {
+  border-color: #94a3b8 !important;
+}
+
+/* Dividers */
+html:not(.dark) .divide-navy-600\/30> :not([hidden])~ :not([hidden]) {
+  border-color: rgba(226, 232, 240, 0.6) !important;
+}
+
+html:not(.dark) .divide-navy-600\/40> :not([hidden])~ :not([hidden]) {
+  border-color: rgba(226, 232, 240, 0.6) !important;
+}
+
+/* Text */
+html:not(.dark) .text-white {
+  color: #0f172a !important;
+}
+
+html:not(.dark) .text-gray-300 {
+  color: #475569 !important;
+}
+
+html:not(.dark) .text-gray-400 {
+  color: #64748b !important;
+}
+
+html:not(.dark) .text-gray-500 {
+  color: #94a3b8 !important;
+}
+
+html:not(.dark) .placeholder-gray-500::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Focus borders */
+html:not(.dark) .focus\:border-primary-500\/50:focus {
+  border-color: rgba(59, 130, 246, 0.5) !important;
+}
+
+/* Hover overrides */
+html:not(.dark) .hover\:bg-navy-600\/20:hover {
+  background-color: rgba(241, 245, 249, 0.8) !important;
+}
+
+html:not(.dark) .hover\:bg-navy-600\/50:hover {
+  background-color: rgba(226, 232, 240, 0.5) !important;
+}
+
+html:not(.dark) .hover\:bg-navy-600\/40:hover {
+  background-color: rgba(226, 232, 240, 0.4) !important;
+}
+
+html:not(.dark) .hover\:bg-navy-500:hover {
+  background-color: #e2e8f0 !important;
+}
+
+html:not(.dark) .hover\:text-white:hover {
+  color: #0f172a !important;
+}
+
+html:not(.dark) .hover\:text-gray-300:hover {
+  color: #1e293b !important;
+}
+
+/* Scrollbar light mode */
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+/* Login page keeps dark hero bg */
+html:not(.dark) .login-hero-bg {
+  background: linear-gradient(135deg, #0B1120 0%, #1e293b 50%, #0f172a 100%) !important;
+}
+
+html:not(.dark) .login-hero-bg * {
+  color: inherit;
+}
+
+html:not(.dark) .login-hero-bg .text-white {
+  color: #ffffff !important;
+}
+
+html:not(.dark) .login-hero-bg .text-gray-300 {
+  color: #cbd5e1 !important;
+}
+
+html:not(.dark) .login-hero-bg .text-gray-400 {
+  color: #94a3b8 !important;
+}
+
+/* Modal overrides in light mode */
+html:not(.dark) .bg-navy-800.border.rounded-lg,
+html:not(.dark) .bg-navy-700.border.rounded-2xl {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Select dropdown in light mode */
+html:not(.dark) select.bg-navy-700 {
+  background-color: #f1f5f9 !important;
+  color: #1e293b !important;
+}
+
+/* Donut chart background ring */
+html:not(.dark) circle[stroke="#1e293b"] {
+  stroke: #e2e8f0 !important;
+}
